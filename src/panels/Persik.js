@@ -24,7 +24,7 @@ export const Persik = ({ id }) => {
   const [expenses, setExpenses] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState('');
 
-  // 🎨 Renk paleti kategorilere göre
+
   const COLORS = {
     '🍔 Еда': '#FF6384',
     '🚕 Транспорт': '#36A2EB',
@@ -34,13 +34,11 @@ export const Persik = ({ id }) => {
     'Без категории': '#999999'
   };
 
-  // localStorage'dan veriyi al
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem('expenses'));
     if (saved) setExpenses(saved);
   }, []);
 
-  // 📆 Seçilen aya göre filtrelenmiş harcamalar
   const filteredExpenses = selectedMonth
     ? expenses.filter(item => {
       const date = new Date(item.date);
@@ -79,7 +77,6 @@ export const Persik = ({ id }) => {
     return { category, sum };
   });
 
-  // Grafik verisi için dönüşüm
   const chartData = categoryTotals
     .filter(item => item.sum > 0)
     .map(item => ({
